@@ -28,7 +28,7 @@ app.use(express.static(__dirname));
 //app.use(express.static(__dirname + '/css/bootstrap.min.css'));
 //app.use(express.static(__dirname + '/images/'));
 
-var server = app.listen(3000);
+var server = app.listen(process.env.PORT || 3000);
 app.get('/', function(req,res) {
   res.sendFile(__dirname  + '/index.html');
     res.sendFile(__dirname  + '/css/bootstrap.min.css');
