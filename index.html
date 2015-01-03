@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+	<title>Coup</title>
+	<link rel="StyleSheet" type="text/css" href="css/bootstrap.min.css" />
+	<style type="text/css">
+	.player-name, .disable-coins-input{
+		background-color:black;
+		color:#fff;
+	}
+	.disable-coins-input{
+		border-style:none;
+		border:0px;
+		width:50px;
+		padding-left:5px;
+	}
+	.player-name h3{
+		padding:0px;
+		margin:0px;
+	}
+	.actions{
+		background-color:white;
+		padding:30px;
+		border-radius:20px;
+	}
+	.padding-top{
+		padding-top:25px;
+	}
+	.player-name .row > div{
+		padding-top:10px;
+	}
+	.player-setup-bar{
+		background-image:url('http://fc06.deviantart.net/fs70/i/2013/015/4/2/noisy_black_texture_3_by_schokcc-d5rkgs0.jpg');
+		-webkit-box-shadow: 0px 5px 8px -1px rgba(56, 68, 52, 0.75);
+		-moz-box-shadow:    0px 5px 8px -1px rgba(56, 68, 52, 0.75);
+		box-shadow:         0px 5px 8px -1px rgba(56, 68, 52, 0.75);
+	}
+	.logo{
+		width:150px;
+		height:50px;
+	}
+	</style>
+</head>
+<body style="background-image:url('http://static.hdw.eweb4.com/media/wp_400/1/1/1190.jpg');">
+<div id="coupLayout">
+</div>
+<div id="foreignAidBlockLayout">
+</div>
+<div id="stealAsCaptainLayout">
+</div>
+<div id="stealAsCaptainBlockLayout">
+</div>
+<div id="infoLayout">
+</div>
+<div id="challengeAmbassadorLayout">
+<button id="btnChallengeAmbassador" style="display:none" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#challengeAmbassadorModal">
+  Launch demo modal
+</button>
+</div>
+<div id="challengeContessaLayout">
+<button id="btnChallengeContessa" style="display:none" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#challengeContessaModal">
+  Launch demo modal
+</button>
+</div>
+<div id="challengeLayout">
+<button id="btnChallenge" style="display:none" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#challengeModal">
+  Launch demo modal
+</button>
+</div>
+<div class="container">
+	<div class="player-setup-bar row">
+		<div class="col-md-10">
+			<input id="mainPlayerId" type="text"/>
+			<input id="opponentPlayerIds" type="hidden" value="" />
+			<button class="btn btn-primary btn-sm but" id="btnRandomCards">Player Number</button>
+		</div>
+		<div class="col-md-2">
+			<img class="logo" src="/images/logo.jpg"/>
+		</div>
+	</div>
+	<div id="playerProfile" class="row">
+	</div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script>
+var socket = io.connect('http://localhost:3000');
+var mainPlayerId = $('#mainPlayerId');
+var opponentUserIds = $('#opponentPlayerIds');
+
+$(".but").click(function(e){
+	socket.emit('SetupPlayer1', mainPlayerId.val());
+	isUserIdTaken(mainPlayerId);		
+})
+
+</script>
+<script type="text/javascript" src="js/default.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
