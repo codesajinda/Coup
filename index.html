@@ -31,6 +31,7 @@
 	}
 	.player-setup-bar{
 		background-image:url('http://fc06.deviantart.net/fs70/i/2013/015/4/2/noisy_black_texture_3_by_schokcc-d5rkgs0.jpg');
+		color:#000;
 		-webkit-box-shadow: 0px 5px 8px -1px rgba(56, 68, 52, 0.75);
 		-moz-box-shadow:    0px 5px 8px -1px rgba(56, 68, 52, 0.75);
 		box-shadow:         0px 5px 8px -1px rgba(56, 68, 52, 0.75);
@@ -39,9 +40,16 @@
 		width:150px;
 		height:50px;
 	}
+	.actions .progress-panel{
+		display:none;
+	}
+	body{
+		background-color:gray;
+	}
 	</style>
 </head>
-<body style="background-image:url('http://static.hdw.eweb4.com/media/wp_400/1/1/1190.jpg');">
+<!--<body style="background-image:url('http://static.hdw.eweb4.com/media/wp_400/1/1/1190.jpg');">-->
+<body>
 <div id="coupLayout">
 </div>
 <div id="foreignAidBlockLayout">
@@ -51,19 +59,47 @@
 <div id="stealAsCaptainBlockLayout">
 </div>
 <div id="infoLayout">
+<button id="btnInfo" style="display:none" type="button" class="btn btn-primary btn-lg" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#infoModal">
+  Launch demo modal
+</button>
+</div>
+<div id="alertLayout">
+<button id="btnAlert" style="display:none" type="button" class="btn btn-primary btn-lg" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#alertModal">
+  Launch demo modal
+</button>
+</div>
+<div id="challengeAssassinLayout">
+<button id="btnChallengeAssassin" style="display:none" type="button" class="btn btn-primary btn-lg" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#challengeAssassinModal">
+  Launch demo modal
+</button>
 </div>
 <div id="challengeAmbassadorLayout">
-<button id="btnChallengeAmbassador" style="display:none" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#challengeAmbassadorModal">
+<button id="btnChallengeAmbassador" style="display:none" type="button" class="btn btn-primary btn-lg" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#challengeAmbassadorModal">
   Launch demo modal
 </button>
 </div>
 <div id="challengeContessaLayout">
-<button id="btnChallengeContessa" style="display:none" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#challengeContessaModal">
+<button id="btnChallengeContessa" style="display:none" type="button" class="btn btn-primary btn-lg" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#challengeContessaModal">
   Launch demo modal
 </button>
 </div>
 <div id="challengeLayout">
-<button id="btnChallenge" style="display:none" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#challengeModal">
+<button id="btnChallenge" style="display:none" type="button" class="btn btn-primary btn-lg" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#challengeModal">
+  Launch demo modal
+</button>
+</div>
+<div id="challengeBluffLayout">
+<button id="btnChallengeBluff" style="display:none" type="button" class="btn btn-primary btn-lg" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#challengeBluffModal">
+  Launch demo modal
+</button>
+</div>
+<div id="characterSwitchLayout">
+<button id="btnCharacterSwitch" style="display:none" type="button" class="btn btn-primary btn-lg" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#characterSwitchModal">
+  Launch demo modal
+</button>
+</div>
+<div id="characterGiveAwayLayout">
+<button id="btnCharacterGiveAway" style="display:none" type="button" class="btn btn-primary btn-lg" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#characterGiveAwayModal">
   Launch demo modal
 </button>
 </div>
@@ -72,10 +108,11 @@
 		<div class="col-md-10">
 			<input id="mainPlayerId" type="text"/>
 			<input id="opponentPlayerIds" type="hidden" value="" />
-			<button class="btn btn-primary btn-sm but" id="btnRandomCards">Player Number</button>
+			<button class="btn btn-primary btn-sm" id="btnRandomCards">Player Number</button>
 		</div>
 		<div class="col-md-2">
-			<img class="logo" src="/images/logo.jpg"/>
+			<!--<img class="logo" src="/images/logo.jpg"/>-->
+			<h2>Coup4Two</h2>
 		</div>
 	</div>
 	<div id="playerProfile" class="row">
@@ -87,11 +124,11 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 <script>
-var socket = io.connect('http://coupcardgame.herokuapp.com/');
+var socket = io.connect('http://localhost:3000/');
 var mainPlayerId = $('#mainPlayerId');
 var opponentUserIds = $('#opponentPlayerIds');
 
-$(".but").click(function(e){
+$("#btnRandomCards").click(function(e){
 	socket.emit('SetupPlayer1', mainPlayerId.val());
 	isUserIdTaken(mainPlayerId);		
 })

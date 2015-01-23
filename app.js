@@ -1,39 +1,14 @@
-/*var app = require('http').(handler)
-  , io = require('socket.io').listen(app)
-  , fs = require('fs')
-  
-app.listen(3000);
-
-function handler (req, res) {
-  fs.readFile(__dirname + '/index.html',
-  function (err, data) {
-    if (err) {
-      res.writeHead(500);
-      return res.end('Error loading index.html');
-    }
-
-    res.writeHead(200);
-    res.end(data);
-  });      
-}
-
-io.sockets.on('connection', function (socket) {
-  socket.on('my other event', function (data) {
-    io.sockets.emit('third event', data);
-  });
-});*/
 var express = require('express')
 var app = express();
 app.use(express.static(__dirname));
-//app.use(express.static(__dirname + '/css/bootstrap.min.css'));
-//app.use(express.static(__dirname + '/images/'));
 
 var server = app.listen(process.env.PORT || 3000);
-app.get('/', function(req,res) {
-  res.sendFile(__dirname  + '/index.html');
-    res.sendFile(__dirname  + '/css/bootstrap.min.css');
-});    
-
+/*app.get('/', function(req,res) {
+  //res.sendFile(__dirname  + '/index.html');
+    //res.sendFile(__dirname  + '/css/bootstrap.min.css');
+	//res.render('/index.html');
+});  */  
+app.get('/');
 var io = require('socket.io').listen(server)
 
 io.sockets.on('connection', function (socket) {
@@ -55,8 +30,14 @@ io.sockets.on('connection', function (socket) {
   socket.on('PlayerBlockedDuke', function (data) {
     io.sockets.emit('PlayerBlockedDuke', data);
   });
+  socket.on('PlayerBlockedForeignAidDuke', function (data) {
+    io.sockets.emit('PlayerBlockedForeignAidDuke', data);
+  });
   socket.on('PlayerUnBlockedDuke', function (data) {
     io.sockets.emit('PlayerUnBlockedDuke', data);
+  }); 
+  socket.on('CannotStealAsCaptainNoIncome', function (data) {
+    io.sockets.emit('CannotStealAsCaptainNoIncome', data);
   }); 
   socket.on('PlayerUnBlockedStealAsCaptain', function (data) {
     io.sockets.emit('PlayerUnBlockedStealAsCaptain', data);
@@ -129,10 +110,6 @@ io.sockets.on('connection', function (socket) {
   });
   socket.on('AssassinPlayer', function (data) {
     io.sockets.emit('AssassinPlayer', data);
-  });
-  /*socket.on('ActionBlockedForeignAid', function (data) {
-    io.sockets.emit('ActionBlockedForeignAid', data);
-  });*/
-  
+  });  
 });
 
