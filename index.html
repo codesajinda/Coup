@@ -46,6 +46,9 @@
 	body{
 		background-color:gray;
 	}
+	h2{
+	 color:#fff;
+	}
 	</style>
 </head>
 <!--<body style="background-image:url('http://static.hdw.eweb4.com/media/wp_400/1/1/1190.jpg');">-->
@@ -124,7 +127,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 <script>
-var socket = io.connect('http://localhost:3000/');
+var socket = io.connect(window.location.href);
 var mainPlayerId = $('#mainPlayerId');
 var opponentUserIds = $('#opponentPlayerIds');
 
