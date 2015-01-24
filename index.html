@@ -43,8 +43,8 @@
 	.actions .progress-panel{
 		display:none;
 	}
-	body{
-		<!--background-color:#ededed;-->
+	#connectedInformation{
+		background-color:#fff;
 	}
 	h2{
 	 color:#fff;
@@ -115,6 +115,10 @@
   Launch demo modal
 </button>
 </div>
+<div id="roomLayout">	
+	<button id="btnCreateRoom" style="display:none" type="button" class="btn btn-primary btn-lg" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#roomLayoutModal">
+	</button>
+</div>
 <div class="container">
 	<div class="player-setup-bar row">
 		<div class="col-md-10">
@@ -127,6 +131,7 @@
 			<h2>Coup4Two</h2>
 		</div>
 	</div>
+	<div id="connectedInformation"></div>	
 	<div id="playerProfile" class="row">
 	</div>
 </div>
@@ -144,6 +149,8 @@ $("#btnRandomCards").click(function(e){
 	socket.emit('SetupPlayer1', mainPlayerId.val());
 	isUserIdTaken(mainPlayerId);		
 })
+
+
 
 </script>
 <script type="text/javascript" src="js/default.js"></script>
