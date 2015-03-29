@@ -83,7 +83,7 @@ io.sockets.on('connection', function (socket) {
   });  
   socket.on('GameOver', function (data) {
     io.sockets.in(socket.room).emit('GameOver', data);
-  });
+  }); 
   socket.on('PlayerSaidHasCaptain', function (data) {
     io.sockets.in(socket.room).emit('PlayerSaidHasCaptain', data);
   });
@@ -125,6 +125,12 @@ io.sockets.on('connection', function (socket) {
   });
   socket.on('AssassinPlayer', function (data) {
     io.sockets.in(socket.room).emit('AssassinPlayer', data);
-  });  
+  }); 
+   socket.on('UpdateIncome', function (data) {
+    io.sockets.in(socket.room).emit('UpdateIncome', data);
+  }); 
+  socket.on('DeductIncome', function (data) {
+    io.sockets.in(socket.room).emit('DeductIncome', data);
+  });
 });
 
